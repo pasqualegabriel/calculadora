@@ -10,16 +10,18 @@
 <body>
   <div id="app">
    
-        <form name="calculator">
+        <form>
 
             <h3>Calculadora</h3>
         
-            <input type="textfield" name="visor" v-model="visor">
+            <!-- <input type="textfield" name="visor" v-model="visor"> -->
+            <display></display>
 
             <br>
 
+            <!-- <tecla valor="1"></teclado> -->
             <input type="button" value="1" @click="operate(1)">
-        
+                    
             <input type="button" value="2" @click="operate(2)">
         
             <input type="button" value="3" @click="operate(3)">

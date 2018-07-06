@@ -1,17 +1,45 @@
-const app = new Vue({
-    el: '#app',
-    data: {
-        visor :""
+var Child = {
+    data: function () {
+        return {
+            visor :""
+        };
     },
+    template: `
+        <input type="textfield" name="visor" v-model="visor">
+    `,
     methods: {
-        operate(element){
+        operate(element) {
             this.visor += element
         }, 
-        calcular(){
+        calcular() {
             this.visor = eval(this.visor).toString()
         }, 
-        clear(){
+        clear() {
             this.visor = ""
         }
+    },
+    created: function() {
+        this.$parent.$on('operar', this.operate)
+        this.$parent.$on('calculate', this.calcular)
+        this.$parent.$on('limpiar', this.clear)
+    }
+}
+  
+new Vue({
+    el: '#app',
+    components: {
+        'display': Child
+    }, 
+    methods: {
+        operate: function(element) {
+            this.$emit('operar', element)
+        },
+        calcular: function() {
+            this.$emit('calculate')
+        },
+        clear: function() {
+            this.$emit('limpiar')
+        }      
     }
 })
+
