@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Calculadora</title>
+  <link rel="stylesheet" type="text/css" href="estiloscalculadora.css">
+</head>
+<body>
+  <div id="app">
+   
+        <form name="calculator">
+
+            <h3>Calculadora</h3>
+        
+            <input type="textfield" name="visor" v-model="visor">
+
+            <br>
+
+            <input type="button" value="1" @click="operate(1)">
+        
+            <input type="button" value="2" @click="operate(2)">
+        
+            <input type="button" value="3" @click="operate(3)">
+        
+            <input type="button" value="+" @click="operate('+')">
+        
+            <br>
+        
+            <input type="button" value="4" @click="operate(4)">
+        
+            <input type="button" value="5" @click="operate(5)">
+        
+            <input type="button" value="6" @click="operate(6)">
+        
+            <input type="button" value="-" @click="operate('-')">
+        
+            <br>
+        
+            <input type="button" value="7" @click="operate(7)">
+        
+            <input type="button" value="8" @click="operate(8)">
+        
+            <input type="button" value="9" @click="operate(9)">
+        
+            <input type="button" value="*" @click="operate('*')">
+        
+            <br>
+        
+            <input type="button" value="0" @click="operate(0)">
+        
+            <input type="reset"  value="c" @click="clear()">
+        
+            <input type="button" value="." @click="operate('.')">
+        
+            <input type="button" value="/" @click="operate('/')">
+
+            <br>
+
+            <input type="button" style='width: 91%' value="=" @click="calcular()">
+            
+        </form>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
