@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Calculadora</title>
-  <link rel="stylesheet" type="text/css" href="estiloscalculadora.css">
+  <link rel="stylesheet" type="text/css" href="calculatorStyles.css">
 </head>
 <body>
   <div id="app">
@@ -14,9 +14,9 @@
 
             <h3>Calculadora</h3>
         
-            <display :visor="visorValue" @changevisorvalue="visorValue = $event"></display>
+            <display :displayvalue="displayValue" @changedisplayvalue="displayValue = $event"></display>
 
-            <botones @operatepressed="operate" @clearpressed="clear" @calcularpressed="calcular"></botones>
+            <buttons @operatevalue="operate" @clearvalue="clear" @calculatevalue="calculate"></buttons>
             
         </form>
 

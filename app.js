@@ -1,76 +1,81 @@
-var ComponenteVisor = {
+var DisplayComponent = {
     props: [
-        'visor'
+        'displayvalue'
     ],
     template: `
-        <input type="textfield" name="visor" :value="visor" @input="changeValue">
+        <input type="textfield" :value="displayvalue" @input="changeValue">
     `,
     methods: {
         changeValue(event) {
-            this.$emit('changevisorvalue', event.target.value)
+            this.$emit('changedisplayvalue', event.target.value)
         }
     }
 }
 
-var ComponenteBotones = {
+var SimpleButtonComponent = {
+    props: [
+        'buttonValue'
+    ],
     template: `
-        <div>
-        
-        <br>
-
-        <input type="button" value="1" @click="operate">
-                
-        <input type="button" value="2" @click="operate">
-
-        <input type="button" value="3" @click="operate">
-
-        <input type="button" value="+" @click="operate">
-
-        <br>
-
-        <input type="button" value="4" @click="operate">
-
-        <input type="button" value="5" @click="operate">
-
-        <input type="button" value="6" @click="operate">
-
-        <input type="button" value="-" @click="operate">
-
-        <br>
-
-        <input type="button" value="7" @click="operate">
-
-        <input type="button" value="8" @click="operate">
-
-        <input type="button" value="9" @click="operate">
-
-        <input type="button" value="*" @click="operate">
-
-        <br>
-
-        <input type="button" value="0" @click="operate">
-
-        <input type="reset"  value="c" @click="clear">
-
-        <input type="button" value="." @click="operate">
-
-        <input type="button" value="/" @click="operate">
-
-        <br>
-
-        <input type="button" style='width: 91%' value="=" @click="calcular">
-        
-        </div>
+        <input type="button" :value="buttonValue" @click="operate">
     `,
     methods: {
         operate(event) {
-            this.$emit('operatepressed', event.target.value)
+            this.$emit('changevalue', event.target.value)
+        }
+    }
+}
+
+var ButtonComponent = {
+    template: `
+        <div>
+
+            <br>
+
+            <boton buttonValue="1" @changevalue="operate"></boton>
+            <boton buttonValue="2" @changevalue="operate"></boton>
+            <boton buttonValue="3" @changevalue="operate"></boton>
+            <boton buttonValue="+" @changevalue="operate"></boton>
+
+            <br>
+
+            <boton buttonValue="4" @changevalue="operate"></boton>
+            <boton buttonValue="5" @changevalue="operate"></boton>
+            <boton buttonValue="6" @changevalue="operate"></boton>
+            <boton buttonValue="-" @changevalue="operate"></boton>
+
+            <br>
+
+            <boton buttonValue="7" @changevalue="operate"></boton>
+            <boton buttonValue="8" @changevalue="operate"></boton>
+            <boton buttonValue="9" @changevalue="operate"></boton>
+            <boton buttonValue="*" @changevalue="operate"></boton>
+
+            <br>
+
+            <boton buttonValue="0" @changevalue="operate"></boton>
+            <input type="reset"  value="c" @click="clear">
+            <boton buttonValue="." @changevalue="operate"></boton>
+            <boton buttonValue="/" @changevalue="operate"></boton>
+
+            <br>
+
+            <input type="button" style='width: 91%' value="=" @click="calculate">
+        
+        </div>
+    `,
+    components: {
+        'boton': SimpleButtonComponent
+    },
+    methods: {
+        operate(element) {
+            this.$emit('operatevalue', element)
         }, 
-        calcular() {
-            this.$emit('calcularpressed')
+        calculate() {
+            this.$emit('calculatevalue')
         }, 
         clear() {
-            this.$emit('clearpressed')
+            this.$emit('clearvalue')
         }
     }
 }
@@ -78,21 +83,21 @@ var ComponenteBotones = {
 new Vue({
     el: '#app',
     data:{
-        visorValue: ""
+        displayValue: ""
     },
     components: {
-        'display': ComponenteVisor,
-        'botones': ComponenteBotones
+        'display': DisplayComponent,
+        'buttons': ButtonComponent
     }, 
     methods: {
         operate(element) {
-            this.visorValue += element
+            this.displayValue += element
         }, 
-        calcular() {
-            this.visorValue = eval(this.visorValue).toString()
+        calculate() {
+            this.displayValue = eval(this.displayValue).toString()
         }, 
         clear() {
-            this.visorValue = ""
+            this.displayValue = ""
         }    
     }
 })
