@@ -3,8 +3,13 @@ var ComponenteVisor = {
         'visor'
     ],
     template: `
-        <input type="textfield" name="visor" v-model="visor">
-    `
+        <input type="textfield" name="visor" :value="visor" @input="changeValue">
+    `,
+    methods: {
+        changeValue(event) {
+            this.$emit('changevisorvalue', event.target.value)
+        }
+    }
 }
 
 var ComponenteBotones = {
@@ -73,7 +78,7 @@ var ComponenteBotones = {
 new Vue({
     el: '#app',
     data:{
-        visor2: ""
+        visorValue: ""
     },
     components: {
         'display': ComponenteVisor,
@@ -81,13 +86,13 @@ new Vue({
     }, 
     methods: {
         operate(element) {
-            this.visor2 += element
+            this.visorValue += element
         }, 
         calcular() {
-            this.visor2 = eval(this.visor2).toString()
+            this.visorValue = eval(this.visorValue).toString()
         }, 
         clear() {
-            this.visor2 = ""
+            this.visorValue = ""
         }    
     }
 })

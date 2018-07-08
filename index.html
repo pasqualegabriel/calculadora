@@ -14,7 +14,7 @@
 
             <h3>Calculadora</h3>
         
-            <display :visor="visor2"></display>
+            <display :visor="visorValue" @changevisorvalue="visorValue = $event"></display>
 
             <botones @operatepressed="operate" @clearpressed="clear" @calcularpressed="calcular"></botones>
             
